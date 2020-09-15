@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\ClientApp\\src",
+    "\\ClientApp\\src\\app",
+    "\\ClientApp\\src\\assets",
+    "\\ClientApp\\src\\environments",
+    "\\ServerApp",
+    "\\ServerApp\\Models"
+  ],
+  "SelectedNode": "\\ServerApp\\Models\\ErrorViewModel.cs",
+  "PreviewInSolutionExplorer": false
+}
