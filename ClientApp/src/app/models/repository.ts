@@ -20,6 +20,11 @@ export class Repository {
       this.getProducts();
     }
 
+    
+    getProductMemory(id: number) {
+        this.product = this.products.find( p => p.productId === id)
+    }
+
     getProduct(id: number){
       this.http.get<Product>(`${productsUrl}/${id}`)
         .subscribe(p => {
