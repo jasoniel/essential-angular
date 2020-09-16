@@ -12,7 +12,7 @@ export class AppComponent {
 
   constructor(private repo: Repository) { }
 
-  get product(): Product {
-    return this.repo.product;
+  get products(): Product[] {
+    return this.repo.products;
   }
 }
