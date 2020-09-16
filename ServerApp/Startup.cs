@@ -34,7 +34,8 @@ namespace ServerApp
                     .AddJsonOptions(opts =>
                     {
                         opts.JsonSerializerOptions.IgnoreNullValues = true;
-                    });
+                    })
+                    .AddNewtonsoftJson();
                     //.AddNewtonsoftJson(options => {
                     //    options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
                     //    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
