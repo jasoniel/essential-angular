@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "KOZRlrcplWvI1VauGhIrhkRkp4t7Mpx8RzlnoEhsiJvmmf6I8uXu2naXO84vk/Vg/95DFdGbCTmlc0RgOqKd8w==",
+  "dgSpecHash": "TPwbRB27CR5rT3zCrTnmwRQ6oP3E6pYYymeU5jLq/LFzUxglzzklO0qYrSp4AGGOV6pPK8ctQtt5C0FFIqMgaA==",
   "success": true,
   "projectFilePath": "C:\\Projetos\\angular_essential_net_core\\SportsStore\\ServerApp\\ServerApp.csproj",
   "expectedPackageFiles": [
@@ -20,8 +20,9 @@
     "C:\\Users\\jazon\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\3.1.1\\microsoft.entityframeworkcore.relational.3.1.1.nupkg.sha512",
     "C:\\Users\\jazon\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver\\3.1.1\\microsoft.entityframeworkcore.sqlserver.3.1.1.nupkg.sha512",
     "C:\\Users\\jazon\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
-    "C:\\Users\\jazon\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\3.1.1\\microsoft.extensions.caching.abstractions.3.1.1.nupkg.sha512",
+    "C:\\Users\\jazon\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\3.1.8\\microsoft.extensions.caching.abstractions.3.1.8.nupkg.sha512",
     "C:\\Users\\jazon\\.nuget\\packages\\microsoft.extensions.caching.memory\\3.1.1\\microsoft.extensions.caching.memory.3.1.1.nupkg.sha512",
+    "C:\\Users\\jazon\\.nuget\\packages\\microsoft.extensions.caching.sqlserver\\3.1.8\\microsoft.extensions.caching.sqlserver.3.1.8.nupkg.sha512",
     "C:\\Users\\jazon\\.nuget\\packages\\microsoft.extensions.configuration\\3.1.8\\microsoft.extensions.configuration.3.1.8.nupkg.sha512",
     "C:\\Users\\jazon\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\3.1.8\\microsoft.extensions.configuration.abstractions.3.1.8.nupkg.sha512",
     "C:\\Users\\jazon\\.nuget\\packages\\microsoft.extensions.configuration.binder\\3.1.8\\microsoft.extensions.configuration.binder.3.1.8.nupkg.sha512",

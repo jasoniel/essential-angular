@@ -1,138 +1,189 @@
 import { Product } from "./product.model";
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http"
-import { Filter, Pagination } from "./configClasses.repository"
-import { Supplier } from "./supplier.model"
-
+import { HttpClient } from "@angular/common/http";
+import { Filter, Pagination } from "./configClasses.repository";
+import { Supplier } from "./supplier.model";
+import { Observable } from "rxjs";
+import { OrderConfirmation, Order } from "./order.model";
+import { log } from "util";
 
 const productsUrl = "/api/products";
 const suppliersUrl = "/api/suppliers";
+const sessionUrl = "/api/session";
+const ordersUrl = "/api/orders";
 
 type productsMetadata = {
-  data: Product[],
+  data: Product[];
   categories: string[];
-}
+};
 
 @Injectable()
 export class Repository {
-    product: Product;
-    products: Product[];
-    suppliers: Supplier[] = [];
-    filter: Filter = new Filter();
-    categories: string[] = [];
-    paginationObject = new Pagination();
+  product: Product;
+  products: Product[];
+  suppliers: Supplier[] = [];
+  filter: Filter = new Filter();
+  categories: string[] = [];
+  paginationObject = new Pagination();
+  orders: Order[] = [];
 
-    constructor(private http: HttpClient) {
-      this.filter.related = true;
+  constructor(private http: HttpClient) {
+    this.filter.related = true;
+  }
+
+  getProductMemory(id: number) {
+    this.product = this.products.find(p => p.productId === id);
+  }
+
+  getProduct(id: number) {
+    this.http.get<Product>(`${productsUrl}/${id}`).subscribe(p => {
+      this.product = p;
+    });
+  }
+
+  getSuppliers() {
+    this.http
+      .get<Supplier[]>(`${suppliersUrl}`)
+      .subscribe(sups => (this.suppliers = sups));
+  }
+
+  getProducts() {
+    let url = `${productsUrl}?related=${this.filter.related}`;
+
+    if (this.filter.category) {
+      url += `&category=${this.filter.category}`;
     }
 
-    
-    getProductMemory(id: number) {
-        this.product = this.products.find( p => p.productId === id)
+    if (this.filter.search) {
+      url += `&search=${this.filter.search}`;
     }
 
-    getProduct(id: number){
-      this.http.get<Product>(`${productsUrl}/${id}`)
-        .subscribe(p => {
-          this.product = p;
-        });
-    }
+    url += "&metadata=true";
 
-    getSuppliers() {
-      this.http.get<Supplier[]>(`${suppliersUrl}`)
-        .subscribe(sups => this.suppliers = sups);
-    }
+    this.http.get<productsMetadata>(url).subscribe(md => {
+      this.products = md.data;
+      this.categories = md.categories;
+    });
+  }
 
-    getProducts() {
-      let url = `${productsUrl}?related=${this.filter.related}`;
+  createProduct(prod: Product) {
+    let data = {
+      name: prod.name,
+      category: prod.category,
+      description: prod.description,
+      price: prod.price,
+      supplier: prod.supplier ? prod.supplier.supplierId : 0
+    };
 
-      if (this.filter.category) {
-        url += `&category=${this.filter.category}`;
+    this.http.post<number>(productsUrl, data).subscribe(id => {
+      prod.productId = id;
+      this.products.push(prod);
+    });
+  }
+
+  createProductAndSupplier(prod: Product, supp: Supplier) {
+    let data = {
+      name: supp.name,
+      city: supp.city,
+      state: supp.state
+    };
+
+    this.http.post<number>(suppliersUrl, data).subscribe(id => {
+      supp.supplierId = id;
+      prod.supplier = supp;
+      this.suppliers.push(supp);
+      if (prod !== null) {
+        this.createProduct(prod);
       }
+    });
+  }
 
-      if (this.filter.search) {
-        url += `&search=${this.filter.search}`
-      }
+  replaceProduct(prod: Product) {
+    let data = {
+      name: prod.name,
+      category: prod.category,
+      description: prod.description,
+      price: prod.price,
+      supplier: prod.supplier ? prod.supplier.supplierId : 0
+    };
 
-      url += "&metadata=true";
+    this.http
+      .put(`${productsUrl}/${prod.productId}`, data)
+      .subscribe(() => this.getProducts());
+  }
 
-      this.http.get<productsMetadata>(url)
-        .subscribe(md => {
-          this.products = md.data
-          this.categories = md.categories;
-        })
-    }
+  replaceSupplier(supp: Supplier) {
+    let data = {
+      name: supp.name,
+      city: supp.city,
+      state: supp.state
+    };
 
-    createProduct(prod: Product) {
-      let data = {
-        name: prod.name, category: prod.category,
-        description: prod.description, price: prod.price,
-        supplier: prod.supplier ? prod.supplier.supplierId : 0
-      }
+    this.http.put(`${suppliersUrl}/${supp.supplierId}`, data).subscribe(
+      () => this.getProducts(),
+      error => console.log("Error =>", error)
+    );
+  }
 
-      this.http.post<number>(productsUrl, data)
-        .subscribe(id => {
-          prod.productId = id;
-          this.products.push(prod)
-        })
-    }
+  updateProduct(id: number, changes: Map<string, any>) {
+    let patch = [];
 
-    createProductAndSupplier(prod: Product, supp: Supplier){
-      let data = {
-        name: supp.name, city: supp.city, state: supp.state
-      };
+    changes.forEach((value, key) =>
+      patch.push({ op: "replace", path: key, value: value })
+    );
 
-      this.http.post<number>(suppliersUrl, data)
-        .subscribe(id => {
-          supp.supplierId = id;
-          prod.supplier = supp;
-          this.suppliers.push(supp)
-          if (prod !== null) {
-            this.createProduct(prod);
-          }
-        });
-    }
+    this.http
+      .patch(`${productsUrl}/${id}`, patch)
+      .subscribe(() => this.getProducts());
+  }
 
-    replaceProduct(prod: Product) {
-      let data = {
-        name: prod.name, category: prod.category,
-        description: prod.description, price: prod.price,
-        supplier: prod.supplier ? prod.supplier.supplierId : 0
-      };
+  deleteProduct(id: number) {
+    this.http
+      .delete(`${productsUrl}/${id}`)
+      .subscribe(() => this.getProducts());
+  }
 
-      this.http.put(`${productsUrl}/${prod.productId}`, data)
-          .subscribe(() => this.getProducts());
-    }
+  deleteSupplier(id: number) {
+    this.http.delete(`${suppliersUrl}/${id}`).subscribe(() => {
+      this.getProducts();
+      this.getSuppliers();
+    });
+  }
 
-    replaceSupplier(supp: Supplier) {
-      let data = {
-        name: supp.name, city: supp.city, state: supp.state
-      };
+  storeSessionData<T>(dataType: string, data: T) {
+    return this.http.post(`${sessionUrl}/${dataType}`, data).subscribe(
+      response => {},
+      error => console.error(error)
+    );
+  }
 
-      this.http.put(`${suppliersUrl}/${supp.supplierId}`, data)
-          .subscribe(() => this.getProducts(),(error) => console.log("Error =>",error));
-    }
+  getSessionData<T>(dataType: string): Observable<T> {
+    return this.http.get<T>(`${sessionUrl}/${dataType}`);
+  }
 
-    updateProduct(id: number, changes: Map<string, any>) {
-      let patch = [];
-      
-      changes.forEach((value, key) => 
-        patch.push({ op: "replace", path: key, value: value }))
+  getOrders() {
+    this.http.get<Order[]>(ordersUrl).subscribe(data => (this.orders = data));
+  }
 
-      this.http.patch(`${productsUrl}/${id}`, patch)
-          .subscribe(() => this.getProducts())      
-    }
+  createOrder(order: Order) {
+    log("send order");
+    this.http
+      .post<OrderConfirmation>(ordersUrl, {
+        name: order.name,
+        address: order.address,
+        payment: order.payment,
+        products: order.products
+      })
+      .subscribe(data => {
+        order.orderConfirmation = data;
+        order.cart.clear();
+        order.clear();
+      });
+  }
 
-    deleteProduct(id: number) {
-      this.http.delete(`${productsUrl}/${id}`)
-        .subscribe(() => this.getProducts());
-    }
-
-    deleteSupplier(id: number) {
-       this.http.delete(`${suppliersUrl}/${id}`)
-           .subscribe(() => {
-              this.getProducts();
-              this.getSuppliers();
-            })
-    }
- }
+  shipOrder(order: Order) {
+    this.http
+      .post(`${ordersUrl}/${order.orderId}`, {})
+      .subscribe(() => this.getOrders());
+  }
+}

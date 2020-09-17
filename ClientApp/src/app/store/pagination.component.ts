@@ -6,12 +6,21 @@ import { NavigationService } from "../models/navigation.service";
   templateUrl: "pagination.component.html"
 })
 export class PaginationComponent {
-  constructor(public navigation: NavigationService) { }
+  constructor(public navigation: NavigationService) {}
+
+  get lastPage(): boolean {
+    return this.navigation.currentPage == this.pages.length;
+  }
 
   get pages(): number[] {
     if (this.navigation.productsCount > 0) {
-      return Array(Math.ceil(this.navigation.productsCount / this.navigation.productsPerPage))
-        .fill(0).map((x, i) => i + 1)
+      return Array(
+        Math.ceil(
+          this.navigation.productsCount / this.navigation.productsPerPage
+        )
+      )
+        .fill(0)
+        .map((x, i) => i + 1);
     } else {
       return [];
     }
