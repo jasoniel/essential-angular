@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ServerApp.Models;
 using ServerApp.Models.BindingTargets;
 using System;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 namespace ServerApp.Controllers
 {
     [Route("api/suppliers")]
+    [Authorize(Roles = "Administrator")]
     [ApiController]
     public class SupplierValuesController : Controller
     {
