@@ -182,7 +182,7 @@ namespace ServerApp.Controllers
 
             if(product != null)
             {
-                context.Products.Remove(new Product { ProductId = id });
+                context.Products.Remove(product);
                 context.SaveChanges();
                 return Ok();
             }

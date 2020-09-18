@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "TPwbRB27CR5rT3zCrTnmwRQ6oP3E6pYYymeU5jLq/LFzUxglzzklO0qYrSp4AGGOV6pPK8ctQtt5C0FFIqMgaA==",
+  "dgSpecHash": "DL6tG1XhysIllJOF15pduYVPmV0134hLmevRHPBd8tRNg03didqo8WfJttNOAoxkNpd8zsGo0YBjVDNPhFGZYQ==",
   "success": true,
-  "projectFilePath": "C:\\Projetos\\angular_essential_net_core\\SportsStore\\ServerApp\\ServerApp.csproj",
+  "projectFilePath": "c:\\Projetos\\angular_essential_net_core\\SportsStore\\ServerApp\\ServerApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jazon\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\3.1.8\\microsoft.aspnetcore.jsonpatch.3.1.8.nupkg.sha512",
     "C:\\Users\\jazon\\.nuget\\packages\\microsoft.aspnetcore.mvc.newtonsoftjson\\3.1.8\\microsoft.aspnetcore.mvc.newtonsoftjson.3.1.8.nupkg.sha512",

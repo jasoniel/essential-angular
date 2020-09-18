@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Projetos\\angular_essential_net_core\\SportsStore\\ServerApp\\ServerApp.csproj": {}
+    "c:\\Projetos\\angular_essential_net_core\\SportsStore\\ServerApp\\ServerApp.csproj": {}
   },
   "projects": {
-    "C:\\Projetos\\angular_essential_net_core\\SportsStore\\ServerApp\\ServerApp.csproj": {
+    "c:\\Projetos\\angular_essential_net_core\\SportsStore\\ServerApp\\ServerApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Projetos\\angular_essential_net_core\\SportsStore\\ServerApp\\ServerApp.csproj",
+        "projectUniqueName": "c:\\Projetos\\angular_essential_net_core\\SportsStore\\ServerApp\\ServerApp.csproj",
         "projectName": "ServerApp",
-        "projectPath": "C:\\Projetos\\angular_essential_net_core\\SportsStore\\ServerApp\\ServerApp.csproj",
+        "projectPath": "c:\\Projetos\\angular_essential_net_core\\SportsStore\\ServerApp\\ServerApp.csproj",
         "packagesPath": "C:\\Users\\jazon\\.nuget\\packages\\",
-        "outputPath": "C:\\Projetos\\angular_essential_net_core\\SportsStore\\ServerApp\\obj\\",
+        "outputPath": "c:\\Projetos\\angular_essential_net_core\\SportsStore\\ServerApp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
