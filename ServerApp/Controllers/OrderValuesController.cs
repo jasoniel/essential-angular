@@ -12,6 +12,8 @@ namespace ServerApp.Controllers
     [ApiController]
     [Route("/api/orders")]
     [Authorize(Roles = "Administrator")]
+    [AutoValidateAntiforgeryToken]
+
     public class OrderValuesController : Controller
     {
 

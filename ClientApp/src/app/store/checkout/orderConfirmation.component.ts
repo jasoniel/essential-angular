@@ -6,7 +6,7 @@ import { Component } from "@angular/core";
   templateUrl: "orderConfirmation.component.html"
 })
 export class OrderConfirmationComponent {
-  constructor(private router: Router, private order: Order) {
+  constructor(private router: Router, public order: Order) {
     if (!order.submited) {
       router.navigateByUrl("/checkout/step3");
     }

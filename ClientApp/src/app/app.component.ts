@@ -22,7 +22,7 @@ export class AppComponent {
     return this.lastError;
   }
 
-  clearErro() {
+  clearError() {
     this.lastError = null;
   }
 }
