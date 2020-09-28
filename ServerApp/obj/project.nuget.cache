@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "o815uhG87LM7PXdw1In0MKE0C9Ux8mXfCtN9qtYsB4pWO9xLALElxYC0JujgaPhYczFzRScr4yCsRcwtHPJOQw==",
+  "dgSpecHash": "14NL+xpsXcyrz0fqIvBuEJvGTSfks4VIJV1CIxskq7pQSZfjUqIxLTwQjw1VOW+ncXKLcf+kg+GpdnATCaloRw==",
   "success": true,
-  "projectFilePath": "c:\\Projetos\\angular_essential_net_core\\SportsStore\\ServerApp\\ServerApp.csproj",
+  "projectFilePath": "C:\\Projetos\\angular_essential_net_core\\SportsStore\\ServerApp\\ServerApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jazon\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\3.1.1\\microsoft.aspnetcore.cryptography.internal.3.1.1.nupkg.sha512",
     "C:\\Users\\jazon\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\3.1.1\\microsoft.aspnetcore.cryptography.keyderivation.3.1.1.nupkg.sha512",

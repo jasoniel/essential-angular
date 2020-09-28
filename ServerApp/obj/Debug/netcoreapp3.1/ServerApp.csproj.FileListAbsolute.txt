@@ -95,3 +95,4 @@ c:\Projetos\angular_essential_net_core\SportsStore\ServerApp\obj\Debug\netcoreap
 c:\Projetos\angular_essential_net_core\SportsStore\ServerApp\obj\Debug\netcoreapp3.1\ServerApp.dll
 c:\Projetos\angular_essential_net_core\SportsStore\ServerApp\obj\Debug\netcoreapp3.1\ServerApp.pdb
 c:\Projetos\angular_essential_net_core\SportsStore\ServerApp\obj\Debug\netcoreapp3.1\ServerApp.genruntimeconfig.cache
+C:\Projetos\angular_essential_net_core\SportsStore\ServerApp\bin\Debug\netcoreapp3.1\Properties\ServiceDependencies\essentialapp - Web Deploy\profile.arm.json
